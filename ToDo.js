@@ -1,4 +1,4 @@
-let tasks = JSON.parse(localStorage.getItem("tasks")) || []; // ამ ბრძანებით თუ "tasks" არის localStorage-ში, მონაცემები სწორად წაიკითხოს და მასივის სახით შემოიტანოს.თუ "tasks" არ არის, პროგრამა არ შეცდეს და ცარიელი მასივი ([]) გამოიყენოს.
+let tasks = JSON.parse(localStorage.getItem("tasks")) || []; // ამ ბრძანებით თუ "tasks" არის localStorage-ში მონაცემები სწორად წაიკითხოს და მასივის სახით შემოიტანოს.თუ "tasks" არ არის პროგრამა არ შეცდეს და ცარიელი მასივი ([]) გამოიყენოს
 
 let deletedTasks = JSON.parse(localStorage.getItem("deletedTasks")) || []; // იგივე ლოგიკა ვრცელდება deletedTasks-ზე
 
@@ -10,7 +10,7 @@ const filterCompleted = document.getElementById("filterCompleted");
 const taskList = document.getElementById("taskList");
 const clearAllBtn = document.getElementById("clearAllBtn");
 
-addTaskBtn.addEventListener("click", function () { // როცა მომხმარებელი დააჭერს "addTaskBtn" ღილაკს, ეს ფუნქცია დაიძვრება
+addTaskBtn.addEventListener("click", function () { // როცა მომხმარებელი დააჭერს "addTaskBtn" ღილაკს ეს ფუნქცია დაიძვრება
     const taskText = taskInput.value.trim(); // taskInput.value იღებს მომხმარებლის მიერ ჩაწერილ ტექსტს და .trim() ზედმეტ სივრცეებს აშორებს
 
     if (taskText) { // თუ დავალება ჩაწერილია taskText ში დავალება დაემატება 
@@ -19,11 +19,11 @@ addTaskBtn.addEventListener("click", function () { // როცა მომხ�
         localStorage.setItem("tasks", JSON.stringify(tasks)); // დავალებების მასივი JSON ით შეინახება localstorage ში
         displayTasks(); // თასქების სია განახლდება
     } else {
-        alert("Please enter a task!"); // თუ მომხმარებელი არ ჩაწერს თასქს, გამოჩნდება გაფრთხილება
+        alert("Please enter a task!"); // თუ მომხმარებელი არ ჩაწერს თასქს გამოჩნდება გაფრთხილება
     }
 });
 
-// ფუნქცია, რომელიც გამოაჩენს დავალებებს სიაში
+// ფუნქცია რომელიც გამოაჩენს დავალებებს სიაში
 function displayTasks() {
     taskList.innerHTML = ""; // ვასუფთავებთ დავალებების სიას რათა თავიდან ავირიდოთ დუბლირებული ჩანაწერები
 
@@ -53,10 +53,10 @@ function displayTasks() {
         }
     });
 
-    clearAllBtn.style.display = tasks.length >= 1 ? "block" : "none"; // ვამოწმებთ უნდა გამოჩნდეს თუ არა Clear All ღილაკი
+    clearAllBtn.style.display = tasks.length >= 1 ? "block" : "none"; // ვამოწმებთ  უნდა გამოჩნდეს თუ არა Clear All ღილაკი
 }
 
-// ფუნქცია, რომელიც განაახლებს დავალების სტატუსს
+// ფუნქცია რომელიც განაახლებს დავალების სტატუსს
 function updateTaskStatus(index, newStatus) {
     tasks[index].status = newStatus; // დავალების სტატუსი განახლდება
     localStorage.setItem("tasks", JSON.stringify(tasks)); // დავალებები ინახება localStorage-ში
@@ -79,7 +79,7 @@ clearAllBtn.addEventListener("click", function () {
     displayTasks(); // განახლებული სია გამოჩნდება
 });
 
-// ფილტრის მონიტორინგი - როცა ფილტრის მდგომარეობა იცვლება, დავალებების სიას ვაჩვენებთ
+// ფილტრის მონიტორინგი - როცა ფილტრის მდგომარეობა იცვლება დავალებების სიას ვაჩვენებთ
 filterInProgress.addEventListener("change", displayTasks);
 filterCompleted.addEventListener("change", displayTasks);
 
